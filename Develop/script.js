@@ -1,7 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-// Assigned variables
+// Assigned variables Uppercase/Lowercase/Numbers/Special
 var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lower = "abcdefghijklmnopqrstuvwxyz";
 var numbers = "0123456789";
@@ -14,7 +14,9 @@ function enterpassword() {
   var passwordText = document.querySelector("#password");
   passwordText.value = password;
 }
+//Adding a debugger 
 debugger;
+
 //write password function 
 function writePassword(){
   var password = generatePassword();
@@ -29,8 +31,8 @@ generateBtn.addEventListener("click", writePassword)
 function generatePassword(){
   //do random generation here and return the final password in the end
   var result = "";
-  //ask the user how many characters they want
-  var length = prompt("How many characters in your random password? (between 8 and 128)");
+  // Var Prompt on How many characters the character wants for a password 
+  var length = prompt("How many characters in your random password? (Choose between 8 & 128)");
   if(isNaN(length)){
     alert("You must input a number!");
     return generatePassword()
@@ -40,32 +42,29 @@ function generatePassword(){
     return generatePassword()
   }
   //ask the user if they want to include upper, lower, num, special?
-  var hasUpper = confirm("Include upper case letters?");
-  var hasLower = confirm("Include lower case letters?");
-  var hasNumbers = confirm("Include numbers?");
-  var hasSpecial = confirm("Include special characters?");
+  var hasUpper = confirm("Include Uppercase Letters?");
+  var hasLower = confirm("Include Lowercase Letters?");
+  var hasNumbers = confirm("Include Numbers?");
+  var hasSpecial = confirm("Include Special Characters?");
 
   if(!hasUpper&&!hasLower&&!hasNumbers&&!hasSpecial){
-    alert("You must at least choose 1 character type!");
+    alert("Please choose at least one special character.");
     return generatePassword()
   }
-
+  // Creating If (True Statements) for Upper/Lower/Numbers/Specials
   if(hasUpper){
     chosenCharacters += upper
   }
   if(hasLower){
     chosenCharacters += lower
   }
-
   if(hasNumbers) {
     chosenCharacters += numbers
   }
-
   if(hasSpecial) {
     chosenCharacters += special
   }
-
-for (var i = 0; i < length; i++) {
+  for (var i = 0; i < length; i++) {
   result += chosenCharacters.charAt(Math.floor(Math.random() * chosenCharacters.length));
 }
 return result;
